@@ -1,8 +1,8 @@
 <script>
-  export let type;
-  export let caption;
-  export let href;
-  export let mode;
+  export let type = "button";
+  export let href = null;
+  export let mode = null;
+  export let color = null;
 </script>
 
 <style>
@@ -43,14 +43,14 @@
   }
 
   .success {
-    background: #01a129;
-    border-color: #01a129;
+    background: #131313;
+    border-color: #131313;
   }
 
   .success:hover,
   .success:active {
-    background: #1ac745;
-    border-color: #1ac745;
+    background: #131313;
+    border-color: #131313;
   }
 
   .outline {
@@ -73,18 +73,22 @@
   }
 
   .outline.success {
-    border-color: #01a129;
-    color: #01a129;
+    border-color: #131313;
+    color: #131313;
   }
 
   .outline.success:hover,
   .outline.success:active {
-    background: #c2ffd1;
+    background: #ddd;
   }
 </style>
 
 {#if href}
-  <a {href}>{caption}</a>
+  <a {href}>
+    <slot />
+  </a>
 {:else}
-  <button class={mode} {type}>{caption}</button>
+  <button class="{mode} {color}" {type} on:click>
+    <slot />
+  </button>
 {/if}

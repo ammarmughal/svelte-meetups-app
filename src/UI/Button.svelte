@@ -3,6 +3,7 @@
   export let href = null;
   export let mode = null;
   export let color = null;
+  export let disabled = false;
 </script>
 
 <style>
@@ -43,14 +44,14 @@
   }
 
   .success {
-    background: #131313;
-    border-color: #131313;
+    background: #01a129;
+    border-color: #01a129;
   }
 
   .success:hover,
   .success:active {
-    background: #131313;
-    border-color: #131313;
+    background: #1ac745;
+    border-color: #1ac745;
   }
 
   .outline {
@@ -73,13 +74,13 @@
   }
 
   .outline.success {
-    border-color: #131313;
-    color: #131313;
+    border-color: #01a129;
+    color: #01a129;
   }
 
   .outline.success:hover,
   .outline.success:active {
-    background: #ddd;
+    background: #c2ffd1;
   }
 </style>
 
@@ -88,7 +89,7 @@
     <slot />
   </a>
 {:else}
-  <button class="{mode} {color}" {type} on:click>
+  <button class="{mode} {color}" {type} on:click {disabled}>
     <slot />
   </button>
 {/if}

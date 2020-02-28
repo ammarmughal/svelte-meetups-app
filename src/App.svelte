@@ -5,7 +5,6 @@
   import Button from "./UI/Button.svelte";
   import EditMeetup from "./Meetups/EditMeetup.svelte";
 
-  let editMode = null;
   let meetups = [
     {
       id: "m1",
@@ -32,7 +31,9 @@
     }
   ];
 
-  const addMeetup = event => {
+  let editMode;
+
+  function addMeetup(event) {
     const newMeetup = {
       id: Math.random().toString(),
       title: event.detail.title,
@@ -42,12 +43,17 @@
       contactEmail: event.detail.email,
       address: event.detail.address
     };
+
+    // meetups.push(newMeetup); // DOES NOT WORK!
     meetups = [newMeetup, ...meetups];
-
     editMode = null;
-  };
+  }
 
-  const toggleFavorite = event => {
+  function cancelEdit() {
+    editMode = null;
+  }
+
+  function toggleFavorite(event) {
     const id = event.detail;
     const updatedMeetup = { ...meetups.find(m => m.id === id) };
     updatedMeetup.isFavorite = !updatedMeetup.isFavorite;
@@ -55,23 +61,21 @@
     const updatedMeetups = [...meetups];
     updatedMeetups[meetupIndex] = updatedMeetup;
     meetups = updatedMeetups;
-  };
-
-  const cancelEdit = () => {
-    editMode = null;
-  };
+  }
 </script>
 
 <style>
   main {
     margin-top: 5rem;
   }
+
   .meetup-controls {
     margin: 1rem;
   }
 </style>
 
 <Header />
+
 <main>
   <div class="meetup-controls">
     <Button on:click={() => (editMode = 'add')}>New Meetup</Button>

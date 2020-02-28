@@ -3,13 +3,13 @@
   import Button from "../UI/Button.svelte";
   import Badge from "../UI/Badge.svelte";
 
+  export let id;
   export let title;
   export let subtitle;
   export let imageUrl;
   export let description;
   export let address;
   export let email;
-  export let id;
   export let isFav;
 
   const dispatch = createEventDispatcher();
@@ -47,7 +47,8 @@
   }
 
   h1.is-favorite {
-    color: #cf0056;
+    background: #01a129;
+    color: white;
     padding: 0 0.5rem;
     border-radius: 5px;
   }
@@ -74,7 +75,7 @@
 
 <article>
   <header>
-    <h1 class:is-favorite={isFav}>
+    <h1>
       {title}
       {#if isFav}
         <Badge>FAVORITE</Badge>
